@@ -30,7 +30,7 @@ public class FileOprator {
                 String[] info = line.split(",");
                 for (Student stu : students) {
                     if (stu.StudentID.equals(info[2])) {
-                        stu.setScore(BasicInfo[0], Double.parseDouble(info[3]));
+                        stu.setScore(BasicInfo[0], Integer.parseInt(BasicInfo[1]), Double.parseDouble(info[3]));
                         isExist = true;
                         break;
                     } else isExist = false;
@@ -41,7 +41,7 @@ public class FileOprator {
                     students[posi].Firstname = info[0];
                     students[posi].Lastname = info[1];
                     students[posi].StudentID = info[2];
-                    students[posi].setScore(BasicInfo[0], Double.parseDouble(info[3]));
+                    students[posi].setScore(BasicInfo[0], Integer.parseInt(BasicInfo[1]), Double.parseDouble(info[3]));
                 }
             }
         } catch (IOException e) {
