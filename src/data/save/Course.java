@@ -3,6 +3,10 @@ package data.save;
 import java.lang.RuntimeException;
 
 public class Course {
+    public Course(){
+        this.CourseName = "";
+    }
+
     public String CourseName;
     public int CourseCredit;
     public double CourseScore;

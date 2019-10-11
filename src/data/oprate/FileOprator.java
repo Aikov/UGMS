@@ -1,5 +1,6 @@
 package data.oprate;
 
+import com.sun.xml.internal.ws.util.StringUtils;
 import data.save.Student;
 
 import java.io.BufferedReader;
@@ -20,7 +21,7 @@ public class FileOprator {
 
     public void read(String FileName) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(FileName));
+            BufferedReader reader = new BufferedReader(new FileReader(PathIn + FileName));
             String FirstLine = reader.readLine();
             String[] BasicInfo = FirstLine.split("\\s");    //我为什么总是想着正则不放，WHY？
             int Num = Integer.parseInt(reader.readLine());
@@ -29,7 +30,7 @@ public class FileOprator {
                 String line = reader.readLine();
                 String[] info = line.split(",");
                 for (Student stu : students) {
-                    if (stu.StudentID.equals(info[2])) {
+                    if (info[2].equals(stu.StudentID)) {
                         stu.setScore(BasicInfo[0], Integer.parseInt(BasicInfo[1]), Double.parseDouble(info[3]));
                         isExist = true;
                         break;
@@ -37,7 +38,7 @@ public class FileOprator {
                 }
                 if (!isExist) {
                     int posi;
-                    for (posi = 0; students[posi].StudentID != null; posi++) ;
+                    for (posi = 0; !students[posi].StudentID.equals(""); posi++) ;
                     students[posi].Firstname = info[0];
                     students[posi].Lastname = info[1];
                     students[posi].StudentID = info[2];
