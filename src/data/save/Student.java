@@ -8,6 +8,7 @@ public class Student {
     public String StudentID;
     public double key;  //这个用于比较，只在select和sort中使用
     public double GPA;
+    public int TotalCredit;
 
     public Student() {
         this.StudentID = "";
@@ -66,5 +67,6 @@ public class Student {
             } else break;
         }
         this.GPA = Ctotal / Ptotal;
+        this.GPA = Ptotal;
     }
 }
