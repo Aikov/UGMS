@@ -11,6 +11,8 @@ public class Student {
 
     public Student() {
         this.StudentID = "";
+        this.Lastname = "";
+        this.Firstname = "";
         for(int i=0;i<100;i++){
             this.course[i] = new Course();
         }
@@ -54,7 +56,7 @@ public class Student {
         }
     }
 
-    public void CaluateGPA() {
+    public void CalculateGPA() {
         double Ctotal = 0;
         double Ptotal = 0;
         for (Course cour : course) {
