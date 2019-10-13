@@ -4,9 +4,9 @@ import data.save.Student;
 
 import java.util.Comparator;
 
-public class Comparator_course_score_mode1 implements Comparator<Student> {
+public class Comparator_StudentLName_mode1 implements Comparator<Student> {
     @Override
     public int compare(Student o1, Student o2) {
-        return (int) (10 * (o1.key - o2.key));
+        return o1.Lastname.compareTo(o2.Lastname);
     }
 }

@@ -5,7 +5,6 @@ import data.Comparator.Comparator_course_score_mode2;
 import data.save.Student;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class Tool {
     public Student[] select(Student[] all, String CourseName) {
