@@ -8,7 +8,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class FileOprator {
-    private String name;
     private String PathIn = "\\Github\\UGMS\\FileIn\\";       //TODO：交作业的时候把这里的Github删掉
     private String PathOut = "\\Github\\UGMS\\FileOut\\";
     private String PathOutput = "\\Github\\UGMS\\FileOut\\Student\\";

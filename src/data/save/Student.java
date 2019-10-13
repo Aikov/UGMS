@@ -6,6 +6,7 @@ public class Student {
     public String Firstname;
     public String Lastname;
     public String StudentID;
+    public double key;  //这个用于比较，只在select和sort中使用
     public double GPA;
 
     public Student() {
