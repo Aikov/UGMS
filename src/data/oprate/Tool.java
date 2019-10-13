@@ -71,4 +71,12 @@ public class Tool {
         }
     }
 
+    public void Sort_GPA(Student[] all, int Mode) {
+        if (Mode == 1) {
+            Arrays.sort(all, new Comparator_GPA_Mode1());
+        } else if (Mode == 2) {
+            Arrays.sort(all, new Comparator_GPA_Mode2());
+        }
+    }
+
 }
