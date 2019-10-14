@@ -6,14 +6,15 @@ public class Student {
     public String Firstname;
     public String Lastname;
     public String StudentID;
-    public double key;  //这个用于比较，只在select和sort中使用
     public double GPA;
     public int TotalCredit;
+    public Course selected; //这个用于统计和排序，仅在select和listGrade中使用
 
     public Student() {
         this.StudentID = "";
         this.Lastname = "";
         this.Firstname = "";
+        selected = new Course();
         for(int i=0;i<100;i++){
             this.course[i] = new Course();
         }
@@ -59,7 +60,7 @@ public class Student {
 
     public void CalculateGPA() {
         double Ctotal = 0;
-        double Ptotal = 0;
+        int Ptotal = 0;
         for (Course cour : course) {
             if (!cour.CourseName.equals("")) {
                 Ctotal += cour.CourseCredit * cour.CoursePoints;
@@ -67,6 +68,6 @@ public class Student {
             } else break;
         }
         this.GPA = Ctotal / Ptotal;
-        this.GPA = Ptotal;
+        this.TotalCredit = Ptotal;
     }
 }

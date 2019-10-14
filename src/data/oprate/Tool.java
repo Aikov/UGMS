@@ -18,7 +18,7 @@ public class Tool {
             for (int j = 0; (j < all[i].course.length) && (!all[i].course[j].CourseName.equals("")); j++)  //同上
                 if (all[i].course[j].CourseName.equals(CourseName)) {
                     Tar[k] = all[i];
-                    Tar[k].key = all[i].course[j].CourseScore;       //将比较的key设置成需要比较的分数
+                    Tar[k].selected = all[i].course[j];       //将比较的key设置成需要比较的分数
                     k++;
                 }
         }
@@ -77,6 +77,25 @@ public class Tool {
         } else if (Mode == 2) {
             Arrays.sort(all, new Comparator_GPA_Mode2());
         }
+    }
+
+    public int[] listGrade(Student[] body) {
+        int[] Res = new int[12];
+        for (Student stu : body) {
+            if (stu.selected.CourseGrade.equals("A+")) Res[0]++;
+            else if (stu.selected.CourseGrade.equals("A")) Res[1]++;
+            else if (stu.selected.CourseGrade.equals("A-")) Res[2]++;
+            else if (stu.selected.CourseGrade.equals("B+")) Res[3]++;
+            else if (stu.selected.CourseGrade.equals("B")) Res[4]++;
+            else if (stu.selected.CourseGrade.equals("B-")) Res[5]++;
+            else if (stu.selected.CourseGrade.equals("C+")) Res[6]++;
+            else if (stu.selected.CourseGrade.equals("C")) Res[7]++;
+            else if (stu.selected.CourseGrade.equals("C-")) Res[8]++;
+            else if (stu.selected.CourseGrade.equals("D")) Res[9]++;
+            else if (stu.selected.CourseGrade.equals("F")) Res[10]++;
+            else if (stu.selected.CourseGrade.equals("O")) Res[11]++;
+        }
+        return Res;
     }
 
 }

@@ -7,14 +7,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class FileOprator {
+public class FileOperator {
     private String PathIn = "\\Github\\UGMS\\FileIn\\";       //TODO：交作业的时候把这里的Github删掉
     private String PathOut = "\\Github\\UGMS\\FileOut\\";
     private String PathOutput = "\\Github\\UGMS\\FileOut\\Student\\";
     private String Path;
     public Student[] students;
 
-    public FileOprator(Student[] Info) {
+    public FileOperator(Student[] Info) {
         this.students = Info;
     }
 

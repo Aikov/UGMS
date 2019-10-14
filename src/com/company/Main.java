@@ -1,6 +1,6 @@
 package com.company;
 
-import data.oprate.FileOprator;
+import data.oprate.FileOperator;
 import data.save.Student;
 
 public class Main {
@@ -9,11 +9,6 @@ public class Main {
         for (int i = 0; i < students.length; i++) {
             students[i] = new Student();
         }
-        FileOprator fileOprator = new FileOprator(students);
-        fileOprator.read("Bye.txt");
-        fileOprator.read("Hello.txt");
-        for (int i = 0; (i < students.length) && !students[i].StudentID.equals("");i++)
-            students[i].CalculateGPA();
-            System.out.println(students[0].GPA);
+        FileOperator fileOperator = new FileOperator(students);
     }
 }
