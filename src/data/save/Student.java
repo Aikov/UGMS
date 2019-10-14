@@ -15,7 +15,7 @@ public class Student {
         this.Lastname = "";
         this.Firstname = "";
         selected = new Course();
-        for(int i=0;i<100;i++){
+        for (int i = 0; i < 100; i++) {
             this.course[i] = new Course();
         }
     }
@@ -49,11 +49,11 @@ public class Student {
             course[posi].CourseCredit = CourseCredit;
             course[posi].CourseScore = Score;
         }
-        try{
-            for(Course cour:course){
+        try {
+            for (Course cour : course) {
                 cour.CalculatePointsAndGrade();
             }
-        }catch(RuntimeException e){
+        } catch (RuntimeException e) {
             e.printStackTrace();
         }
     }
@@ -69,5 +69,14 @@ public class Student {
         }
         this.GPA = Ctotal / Ptotal;
         this.TotalCredit = Ptotal;
+    }
+
+    public String Told() {
+        String toTold = "\n\n";
+        toTold = toTold + this.Firstname + " " + this.Lastname + "\n";
+        for (int i = 0; i < course.length && (!course[i].CourseName.equals("")); i++){
+            toTold = toTold + course[i].CourseName + " " + course[i].CourseGrade + "\n";
+        }
+        return toTold;
     }
 }

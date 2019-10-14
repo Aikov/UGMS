@@ -98,4 +98,12 @@ public class Tool {
         return Res;
     }
 
+    //没有找到的话返回空
+    public Student SingleSelect(Student[] body,String ID){
+        for(Student stu:body){
+            if(ID.equals(stu.StudentID)) return stu;
+        }
+        return new Student();
+    }
+
 }
