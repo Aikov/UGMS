@@ -1,10 +1,8 @@
 package data.save;
 
-import data.save.Course;
-
 public class Student {
-    public String Firstname;
-    public String Lastname;
+    public String FirstName;
+    public String Surname;
     public String StudentID;
     public double GPA;
     public int TotalCredit;
@@ -12,8 +10,8 @@ public class Student {
 
     public Student() {
         this.StudentID = "";
-        this.Lastname = "";
-        this.Firstname = "";
+        this.Surname = "";
+        this.FirstName = "";
         selected = new Course();
         for (int i = 0; i < 100; i++) {
             this.course[i] = new Course();
@@ -72,11 +70,11 @@ public class Student {
     }
 
     public String Told() {
-        String toTold = "\n\n";
-        toTold = toTold + this.Firstname + " " + this.Lastname + "\n";
+        StringBuilder toTold = new StringBuilder("\n\n");
+        toTold.append(this.FirstName).append(" ").append(this.Surname).append("\n");
         for (int i = 0; i < course.length && (!course[i].CourseName.equals("")); i++){
-            toTold = toTold + course[i].CourseName + " " + course[i].CourseGrade + "\n";
+            toTold.append(course[i].CourseName).append(" ").append(course[i].CourseGrade).append("\n");
         }
-        return toTold;
+        return toTold.toString();
     }
 }

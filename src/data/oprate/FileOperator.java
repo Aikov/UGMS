@@ -1,6 +1,5 @@
 package data.oprate;
 
-import com.sun.xml.internal.ws.util.StringUtils;
 import data.save.Student;
 
 import java.io.BufferedReader;
@@ -38,8 +37,8 @@ public class FileOperator {
                 if (!isExist) {                                  //没有的话就造一个
                     int posi;                                    //我开始想念SQL了
                     for (posi = 0; !students[posi].StudentID.equals(""); posi++) ;
-                    students[posi].Firstname = info[0];
-                    students[posi].Lastname = info[1];
+                    students[posi].FirstName = info[0];
+                    students[posi].Surname = info[1];
                     students[posi].StudentID = info[2];
                     students[posi].setScore(BasicInfo[0], Integer.parseInt(BasicInfo[1]), Double.parseDouble(info[3]));
                 }
