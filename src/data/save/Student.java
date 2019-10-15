@@ -71,7 +71,7 @@ public class Student {
 
     public String Told() {
         StringBuilder toTold = new StringBuilder("\n\n");
-        toTold.append(this.FirstName).append(" ").append(this.Surname).append("\n");
+        toTold.append(this.FirstName).append(" ").append(this.Surname).append(" ").append(this.StudentID).append("\n");
         for (int i = 0; i < course.length && (!course[i].CourseName.equals("")); i++){
             toTold.append(course[i].CourseName).append(" ").append(course[i].CourseGrade).append("\n");
         }
