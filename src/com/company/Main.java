@@ -4,6 +4,8 @@ import data.oprate.FileOperator;
 import data.oprate.Tool;
 import data.save.Student;
 
+import java.awt.*;
+
 public class Main {
     public static void main(String[] args) {
         Student[] students = new Student[10000];
@@ -12,8 +14,11 @@ public class Main {
         }
         FileOperator fileOperator = new FileOperator(students);
         fileOperator.read("CN105.txt");
+        System.out.println("Finished");
         fileOperator.read("LP002.txt");
+        System.out.println("Finished");
         fileOperator.read("LP104.txt");
+        System.out.println("Finished");
         fileOperator.read("MA109.txt");
         for(Student stu:students){
             if(stu.StudentID.equals(""))

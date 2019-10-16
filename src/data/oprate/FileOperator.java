@@ -11,7 +11,7 @@ public class FileOperator {
     private String PathIn;
     private String PathOut;
     private String PathOutput;
-    public Student[] students;
+    private Student[] students;
 
     public FileOperator(Student[] Info) {
         File tool = new File("");
@@ -41,8 +41,10 @@ public class FileOperator {
                     } else isExist = false;
                 }
                 if (!isExist) {                                  //没有的话就造一个
-                    int posi;                                    //我开始想念SQL了
-                    for (posi = 0; !students[posi].StudentID.equals(""); posi++) ;
+                    int posi = 0;                                    //我开始想念SQL了
+                    while (!students[posi].StudentID.equals("")){
+                        posi ++;
+                    }
                     students[posi].FirstName = info[0];
                     students[posi].Surname = info[1];
                     students[posi].StudentID = info[2];
