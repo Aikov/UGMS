@@ -3,17 +3,23 @@ package data.oprate;
 import data.save.Student;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class FileOperator {
-    private String PathIn = "\\Github\\UGMS\\FileIn\\";       //TODO：交作业的时候把这里的Github删掉
-    private String PathOut = "\\Github\\UGMS\\FileOut\\";
-    private String PathOutput = "\\Github\\UGMS\\FileOut\\Student\\";
-    private String Path;
+    private String PathIn;
+    private String PathOut;
+    private String PathOutput;
     public Student[] students;
 
     public FileOperator(Student[] Info) {
+        File tool = new File("");
+        String path = tool.getAbsolutePath();
+        System.out.println(path);
+        this.PathIn = path + "\\FileIn\\";
+        this.PathOut = path + "\\FileOut\\";
+        this.PathOutput = this.PathOut + "\\Student\\";
         this.students = Info;
     }
 
@@ -21,7 +27,7 @@ public class FileOperator {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(PathIn + FileName));
             String FirstLine = reader.readLine();
-            String[] BasicInfo = FirstLine.split("\\s");    //我为什么总是想着正则不放，WHY？
+            String[] BasicInfo = FirstLine.split(",");    //我为什么总是想着正则不放，WHY？
             int Num = Integer.parseInt(reader.readLine());
             for (int i = 0; i < Num; i++) {                        //这一段逻辑是我最想骂人的地方
                 boolean isExist = true;                            //最早的NPE就是从这里开始报错的，找了半天不知道怎么办

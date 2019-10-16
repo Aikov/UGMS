@@ -26,7 +26,7 @@ public class Tool {
     }
 
     public void Sort_Course(Student[] students, int Mode) {
-        //@param Mode:Mode 1 从大到小 ，Mode 2 从小到大 排序依据是students.key
+        //@param Mode:Mode 1 从小到大 ，Mode 2 从大到小 排序依据是students.selected
         if (Mode == 1) {
             Arrays.sort(students, new Comparator_course_score_mode1());
         } else if (Mode == 2) {
