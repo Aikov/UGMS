@@ -63,7 +63,7 @@ public class Tool {
         }
     }
 
-    public void Sort_StdentLName(Student[] all, int Mode) {
+    public void Sort_StudentLName(Student[] all, int Mode) {
         if (Mode == 1) {
             Arrays.sort(all, new Comparator_StudentLName_mode1());
         } else if (Mode == 2) {
@@ -82,26 +82,52 @@ public class Tool {
     public int[] listGrade(Student[] body) {
         int[] Res = new int[12];
         for (Student stu : body) {
-            if (stu.selected.CourseGrade.equals("A+")) Res[0]++;
-            else if (stu.selected.CourseGrade.equals("A")) Res[1]++;
-            else if (stu.selected.CourseGrade.equals("A-")) Res[2]++;
-            else if (stu.selected.CourseGrade.equals("B+")) Res[3]++;
-            else if (stu.selected.CourseGrade.equals("B")) Res[4]++;
-            else if (stu.selected.CourseGrade.equals("B-")) Res[5]++;
-            else if (stu.selected.CourseGrade.equals("C+")) Res[6]++;
-            else if (stu.selected.CourseGrade.equals("C")) Res[7]++;
-            else if (stu.selected.CourseGrade.equals("C-")) Res[8]++;
-            else if (stu.selected.CourseGrade.equals("D")) Res[9]++;
-            else if (stu.selected.CourseGrade.equals("F")) Res[10]++;
-            else if (stu.selected.CourseGrade.equals("O")) Res[11]++;
+            switch (stu.selected.CourseGrade) {
+                case "A+":
+                    Res[0]++;
+                    break;
+                case "A":
+                    Res[1]++;
+                    break;
+                case "A-":
+                    Res[2]++;
+                    break;
+                case "B+":
+                    Res[3]++;
+                    break;
+                case "B":
+                    Res[4]++;
+                    break;
+                case "B-":
+                    Res[5]++;
+                    break;
+                case "C+":
+                    Res[6]++;
+                    break;
+                case "C":
+                    Res[7]++;
+                    break;
+                case "C-":
+                    Res[8]++;
+                    break;
+                case "D":
+                    Res[9]++;
+                    break;
+                case "F":
+                    Res[10]++;
+                    break;
+                case "O":
+                    Res[11]++;
+                    break;
+            }
         }
         return Res;
     }
 
     //没有找到的话返回空
-    public Student SingleSelect(Student[] body,String ID){
-        for(Student stu:body){
-            if(ID.equals(stu.StudentID)) return stu;
+    public Student SingleSelect(Student[] body, String ID) {
+        for (Student stu : body) {
+            if (ID.equals(stu.StudentID)) return stu;
         }
         return new Student();
     }
