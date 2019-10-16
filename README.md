@@ -2,12 +2,11 @@
 
 数据结构作业，终于来了
 
-# 注意：
+# 注意
+使用的时候请将所有文件至于项目目录的/FileIn文件夹中
 
-使用的时候请将此文件夹置于 #根目录# 中
+可运行的.class文件在项目下的
 
-并且 #不要修改# 任何的文件夹路径名称
+/out/production/UGMS/com/company
 
-请将需要操作的文件置入UGMS\FileIn中
-
-输出的文件将放入UGMS\FileOut中
+其中的Main.class为项目主程序入口
