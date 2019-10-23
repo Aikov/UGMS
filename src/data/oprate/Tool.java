@@ -3,10 +3,12 @@ package data.oprate;
 import data.Comparator.*;
 import data.save.Student;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Tool {
     public Student[] select_score(Student[] all, String CourseName) {
+        //这个函数的作用是根据课程名称选择学生
         int count = 0;
         for (int i = 0; (i < all.length) && (!all[i].StudentID.equals("")); i++) {  //这里的equals主要是为了减少时间消耗
             for (int j = 0; (j < all[i].course.length) && (!all[i].course[j].CourseName.equals("")); j++)  //同上
@@ -126,10 +128,27 @@ public class Tool {
 
     //没有找到的话返回空
     public Student SingleSelect(Student[] body, String ID) {
+        //使用这个函数之前，请一定一定一定要使用select_student，不然可能会炸掉
         for (Student stu : body) {
             if (ID.equals(stu.StudentID)) return stu;
         }
         return new Student();
+    }
+
+    public Student[] SurNameSelect(Student[] body, String Surname) {
+        int count = 0;
+        for (int i = 0; (i < body.length) && (!body[i].StudentID.equals("")); i++) {
+            if (Surname.equals(body[i].Surname)) count++;
+        }
+        Student[] Tar = new Student[count];
+        int k = 0;
+        for (int i = 0; (i < body.length) && (!body[i].StudentID.equals("")); i++) {
+            if (Surname.equals(body[i].Surname)) {
+                Tar[k] = body[i];
+                k++;
+            }
+        }
+        return Tar;
     }
 
 }
