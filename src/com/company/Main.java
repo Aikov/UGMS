@@ -31,8 +31,9 @@ public class Main {
         System.out.println("Finished, thanks for your patient!");
         cleaner();    //For clean the screen
         System.out.println("What can I do for you next");
-        System.out.println("Input 1 I will give you report");
-        System.out.println("Input 2 I will you can search data");
+        System.out.println("Input 1 I will give you report on one course");
+        System.out.println("Input 2 You can search data");
+        System.out.println("Input 3 I will give you report of all students");
         switch (input.nextInt()) {
             case 1:
                 System.out.print("Which course do you want me to report?\n");
