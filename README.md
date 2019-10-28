@@ -16,3 +16,5 @@
 
 /out/production/UGMS/data
 
+使用CMD运行时，请进入/out/production/UGMS
+运行 java com.company.Main.class

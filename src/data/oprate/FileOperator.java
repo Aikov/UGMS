@@ -11,14 +11,15 @@ public class FileOperator {
     private String PathIn;
     private String PathOut;
     private String PathOutput;
-    private Student[] students;
+    public Student[] students;
 
     public FileOperator(Student[] Info) {
         File tool = new File("");
         String path = tool.getAbsolutePath();
-        System.out.println(path);
-        this.PathIn = path + "\\FileIn\\";
-        this.PathOut = path + "\\FileOut\\";
+        //System.out.println(path);
+        String[] P = path.split("out");
+        this.PathIn = P[0] + "\\FileIn\\";
+        this.PathOut = P[0] + "\\FileOut\\";
         this.PathOutput = this.PathOut + "\\Student\\";
         this.students = Info;
     }

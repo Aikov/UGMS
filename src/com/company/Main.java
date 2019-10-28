@@ -2,10 +2,12 @@ package com.company;
 
 import data.oprate.FileOperator;
 import data.oprate.Tool;
+import data.save.Course;
 import data.save.Student;
 
-import java.awt.*;
+import java.io.IOException;
 import java.util.Scanner;
+import java.lang.Thread;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,18 +20,63 @@ public class Main {
         }
         do {
             System.out.print("Please enter the database filename:");
-            String course = input.nextLine();
+            String course = input.next();
+            if (!course.contains(".txt")) course += ".txt";
             System.out.println("Do you have another score report?\n Press \"Y\" for Yes and \"N\" for No");
             fileOperator.read(course);
-        } while (input.nextLine().equals("Y"));
-        Student[] selected = t.select_score(students, "CN105");
-        t.Sort_Course(selected, 1);
-        /*for (Student stu : selected) {
-            if (stu.StudentID.equals(""))
+        } while (input.next().equals("Y"));
+        System.out.println("Reading, Please Wait");
+        fileOperator = new FileOperator(t.select_student(fileOperator.students));
+        students = fileOperator.students;
+        System.out.println("Finished, thanks for your patient!");
+        cleaner();    //For clean the screen
+        System.out.println("What can I do for you next");
+        System.out.println("Input 1 I will give you report");
+        System.out.println("Input 2 I will you can search data");
+        switch (input.nextInt()) {
+            case 1:
+                System.out.print("Which course do you want me to report?\n");
+                String course = input.next();
+                System.out.println("Would you like to just have a brief?");
+                Student[] select = t.select_course(students, course);
+                System.out.println("(Y)es or (N)o");
+                if(input.next().equals("Y")){
+                    makeStatisticsReport(select);
+                    break ;
+                }
+                System.out.println("Would you like to (S)ort, or just (R)aw report");
+                switch (input.next()) {
+                    case "R":
+                        print_course(select);
+                        break;
+                    case "S":
+                        System.out.println("(1) Surname; (2) ID; (3) Score; (4) Grade");
+                        System.out.print("Please choose the sorting field:");
+                        int field = input.nextInt(), order;
+                        System.out.println("(A)scending order or (D)escending order?");
+                        if (input.next().equals("A")) order = 1;
+                        else order = 2;
+                        switch (field) {
+                            case 1:
+                                t.Sort_StudentLName(select, order);
+                                break;
+                            case 2:
+                                t.Sort_StudentID(select, order);
+                                break;
+                            case 3:
+                            case 4:
+                                t.Sort_Course(select, order);
+                                break;
+                        }
+                        print_course(select);
+                }
+                System.out.println("Would you like to have brief?");
+                System.out.println("(Y)es or (N)o");
+                if (input.next().equals("Y")) {
+                    makeStatisticsReport(select);
+                }
                 break;
-            else System.out.println(stu.StudentID + " " + stu.selected.CourseScore);
-        }*/
-        print_course(selected);
+        }
     }
 
     private static void print_course(Student[] info) {
@@ -45,5 +92,41 @@ public class Main {
             System.out.printf("%6s     ", stu.selected.CourseScore);
             System.out.printf("%-6s\n", stu.selected.CourseGrade);
         }
+    }
+
+    private static void cleaner() {
+        try {
+            Thread.sleep(1000);
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ignored) {
+        }
+    }
+
+    private static void makeStatisticsReport(Student[] select) {
+        Tool t = new Tool();
+        int[] Grade = t.listGrade(select);
+        double[] Score = t.getScore(select);
+        Course BasicInfo = select[0].selected;
+        System.out.println("Course Code: " + BasicInfo.CourseName);
+        System.out.println("Credit: " + BasicInfo.CourseCredit);
+        System.out.println();
+        System.out.printf("The average score: %.2f\n", Score[2]);
+        System.out.println("The highest score: " + Score[0]);
+        System.out.println("The lowest score: " + Score[1]);
+        System.out.println();
+        System.out.println("A+: " + Grade[0]);
+        System.out.println("A: " + Grade[1]);
+        System.out.println("A-: " + Grade[2]);
+        System.out.println("B+: " + Grade[3]);
+        System.out.println("B: " + Grade[4]);
+        System.out.println("B-: " + Grade[5]);
+        System.out.println("C+: " + Grade[6]);
+        System.out.println("C: " + Grade[7]);
+        System.out.println("C-: " + Grade[8]);
+        System.out.println("D: " + Grade[9]);
+        System.out.println("F: " + Grade[10]);
     }
 }

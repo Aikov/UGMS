@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Tool {
-    public Student[] select_score(Student[] all, String CourseName) {
+    public Student[] select_course(Student[] all, String CourseName) {
         //这个函数的作用是根据课程名称选择学生
         int count = 0;
         for (int i = 0; (i < all.length) && (!all[i].StudentID.equals("")); i++) {  //这里的equals主要是为了减少时间消耗
@@ -81,7 +81,7 @@ public class Tool {
         }
     }
 
-    public int[] listGrade(Student[] body) {
+    public int[] listGrade(Student[] body) {        //这个函数是实现统计某一门课等级数量的
         int[] Res = new int[12];
         for (Student stu : body) {
             switch (stu.selected.CourseGrade) {
@@ -123,6 +123,25 @@ public class Tool {
                     break;
             }
         }
+        return Res;
+    }
+
+    public double[] getScore(Student[] body) {
+        /*
+         * :param body:所有的数据
+         * :return :一个数组，依次是最大最小和平均值
+         */
+        double[] Res = new double[3];
+        double max = 0, min = 100;
+        double all = 0;
+        for (Student stu : body) {
+            if (stu.selected.CourseScore > max) max = stu.selected.CourseScore;
+            if (stu.selected.CourseScore < min) min = stu.selected.CourseScore;
+            all += stu.selected.CourseScore;
+        }
+        Res[0] = max;
+        Res[1] = min;
+        Res[2] = all / body.length;
         return Res;
     }
 
