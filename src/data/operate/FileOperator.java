@@ -1,4 +1,18 @@
-package data.oprate;
+/*
+ *Assignment University Grade Management
+ *Author: Du, Zhaolong
+ *Student ID: 1809853D-I011-0073
+ *Course:LP002
+ *E-Mail: 1809853di011007@student.must.edu.mo
+ *
+ * Description:
+ * This file contains FileOperator class
+ * This class is designed to operate file
+ * At now (2019/10/28 23:57) It only has method read()
+ * which designed to read data set from tester
+ * Maybe later I will write save-load method
+ */
+package data.operate;
 
 import data.save.Student;
 
@@ -37,6 +51,7 @@ public class FileOperator {
                 for (Student stu : students) {                    //这里就是找找学生里面有没有那个人
                     if (info[2].equals(stu.StudentID)) {           //有的话就写分数
                         stu.setScore(BasicInfo[0], Integer.parseInt(BasicInfo[1]), Double.parseDouble(info[3]));
+                        stu.CalculateGPA();
                         isExist = true;
                         break;
                     } else isExist = false;
@@ -50,6 +65,7 @@ public class FileOperator {
                     students[posi].Surname = info[1];
                     students[posi].StudentID = info[2];
                     students[posi].setScore(BasicInfo[0], Integer.parseInt(BasicInfo[1]), Double.parseDouble(info[3]));
+                    students[posi].CalculateGPA();
                 }
             }
         } catch (IOException e) {

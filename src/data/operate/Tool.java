@@ -1,9 +1,25 @@
-package data.oprate;
+/*
+ *Assignment University Grade Management
+ *Author: Du, Zhaolong
+ *Student ID: 1809853D-I011-0073
+ *Course:LP002
+ *E-Mail: 1809853di011007@student.must.edu.mo
+ *
+ * Description:
+ * This file is designed to store all method of select and sort
+ * so that why it`s called Tool
+ *
+ * I still don`t know how to write a method only provide to a Object Array
+ * So I decide package them all in a class, this class Tool
+ *
+ * I think method name in this class is clear enough
+ * for every to under stand function of each method
+ */
+package data.operate;
 
 import data.Comparator.*;
 import data.save.Student;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Tool {
@@ -164,6 +180,22 @@ public class Tool {
         for (int i = 0; (i < body.length) && (!body[i].StudentID.equals("")); i++) {
             if (Surname.equals(body[i].Surname)) {
                 Tar[k] = body[i];
+                k++;
+            }
+        }
+        return Tar;
+    }
+
+    public Student[] GPASelect(Student[] body, Double GPA) {
+        int count = 0;
+        for (Student stu : body) {
+            if (stu.GPA == GPA) count++;
+        }
+        Student[] Tar = new Student[count];
+        int k = 0;
+        for (Student student : body) {
+            if (student.GPA == GPA) {
+                Tar[k] = student;
                 k++;
             }
         }

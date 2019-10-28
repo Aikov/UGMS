@@ -1,3 +1,21 @@
+/*
+ *Assignment University Grade Management
+ *Author: Du, Zhaolong
+ *Student ID: 1809853D-I011-0073
+ *Course:LP002
+ *E-Mail: 1809853di011007@student.must.edu.mo
+ *
+ * Description:
+ * This file contains Student class
+ * the main Data-Saving class of this project
+ * In this class, I declare all information I need
+ * Name ID GPA and so on
+ * I also write some basic method of this class
+ * Such as setScore() and Told()
+ * As you can see I made some mistake at first
+ * method setCourseBasicInfo() is an old method
+ * It become useless during project update
+ */
 package data.save;
 
 public class Student {
@@ -75,6 +93,7 @@ public class Student {
         for (int i = 0; i < course.length && (!course[i].CourseName.equals("")); i++){
             toTold.append(course[i].CourseName).append(" ").append(course[i].CourseGrade).append("\n");
         }
+        toTold.append("GPA: ").append(this.GPA);
         return toTold.toString();
     }
 }

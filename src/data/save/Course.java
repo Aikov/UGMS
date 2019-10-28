@@ -1,3 +1,16 @@
+/*
+ *Assignment University Grade Management
+ *Author: Du, Zhaolong
+ *Student ID: 1809853D-I011-0073
+ *Course:LP002
+ *E-Mail: 1809853di011007@student.must.edu.mo
+ *
+ * Description:
+ * This file is designed to store info of one course
+ * Each Student Object has 100 Course Object
+ * It has two method, they look like set mode but it`s different from that mode
+ * Also one of Data-Saving core
+ */
 package data.save;
 
 import java.lang.RuntimeException;

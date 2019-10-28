@@ -17,4 +17,11 @@
 /out/production/UGMS/data
 
 使用CMD运行时，请进入/out/production/UGMS
+
 运行 java com.company.Main.class
+
+#请不要
+
+修改任何项目文件夹中的文件路径
+
+这将导致错误
