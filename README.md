@@ -20,7 +20,7 @@
 
 运行 java com.company.Main.class
 
-#请不要
+# 请不要
 
 修改任何项目文件夹中的文件路径
 
