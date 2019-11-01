@@ -26,19 +26,21 @@ public class Tool {
     public Student[] select_course(Student[] all, String CourseName) {
         //这个函数的作用是根据课程名称选择学生
         int count = 0;
-        for (int i = 0; (i < all.length) && (!all[i].StudentID.equals("")); i++) {  //这里的equals主要是为了减少时间消耗
-            for (int j = 0; (j < all[i].course.length) && (!all[i].course[j].CourseName.equals("")); j++)  //同上
-                if (all[i].course[j].CourseName.equals(CourseName)) count++;
-        }
-        Student[] Tar = new Student[count];
+        int[] pos = new int[10000];
         int k = 0;
         for (int i = 0; (i < all.length) && (!all[i].StudentID.equals("")); i++) {  //这里的equals主要是为了减少时间消耗
             for (int j = 0; (j < all[i].course.length) && (!all[i].course[j].CourseName.equals("")); j++)  //同上
                 if (all[i].course[j].CourseName.equals(CourseName)) {
-                    Tar[k] = all[i];
-                    Tar[k].selected = all[i].course[j];       //将比较的key设置成需要比较的分数
+                    count++;
+                    all[i].selected = all[i].course[j];
+                    pos[k] = i + 1;
                     k++;
+                    break;
                 }
+        }
+        Student[] Tar = new Student[count];
+        for (k = 0; pos[k] != 0; k++) {
+            Tar[k] = all[pos[k] - 1];
         }
         return Tar;
     }
