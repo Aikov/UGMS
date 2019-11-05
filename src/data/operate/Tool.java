@@ -26,7 +26,7 @@ public class Tool {
     public Student[] select_course(Student[] all, String CourseName) {
         //这个函数的作用是根据课程名称选择学生
         int count = 0;
-        int[] pos = new int[10000];
+        int[] pos = new int[all.length + 1];  // +1 防炸
         int k = 0;
         for (int i = 0; (i < all.length) && (!all[i].StudentID.equals("")); i++) {  //这里的equals主要是为了减少时间消耗
             for (int j = 0; (j < all[i].course.length) && (!all[i].course[j].CourseName.equals("")); j++)  //同上
@@ -202,6 +202,33 @@ public class Tool {
             }
         }
         return Tar;
+    }
+
+
+    public Student[] RangeSearch(Student[] all, int mode, double Limit) {
+        //param : mode 1 >  & mode 2 <
+        int[] pos = new int[all.length + 1];     //老样子 +1防炸
+        int k = 0, count = 0;
+        for (int i = 0; i < all.length; i++) {
+            if (mode == 1) {
+                if (all[i].GPA >= Limit) {
+                    pos[k] = i + 1;
+                    k++;
+                    count++;
+                }
+            } else {
+                if (all[i].GPA < Limit) {
+                    pos[k] = i + 1;
+                    k++;
+                    count++;
+                }
+            }
+        }
+        Student[] Tar = new Student[count];
+        for (k = 0; pos[k] != 0; k++){
+            Tar[k] = all[pos[k] - 1];
+        }
+        return Tar ;
     }
 
 }

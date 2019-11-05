@@ -1,15 +1,15 @@
 /*
-*Assignment University Grade Management
-*Author: Du, Zhaolong
-*Student ID: 1809853D-I011-0073
-*E-Mail: 1809853di011007@student.must.edu.mo
-*Course:LP002
-*
-* Description:
-* This is the main file of the project
-* Play the most important part in Input and Output
-* At the same time, it call all public method in other class
-*/
+ *Assignment University Grade Management
+ *Author: Du, Zhaolong
+ *Student ID: 1809853D-I011-0073
+ *E-Mail: 1809853di011007@student.must.edu.mo
+ *Course:LP002
+ *
+ * Description:
+ * This is the main file of the project
+ * Play the most important part in Input and Output
+ * At the same time, it call all public method in other class
+ */
 package com.company;
 
 import data.operate.FileOperator;
@@ -48,6 +48,7 @@ public class Main {
         System.out.println("Input 1 I will give you report on one course");
         System.out.println("Input 2 You can search data");
         System.out.println("Input 3 I will give you report of all students");
+        System.out.println("Input 4 is bonus functions");
         switch (input.nextInt()) {
             case 1:
                 System.out.print("Which course do you want me to report?\n");
@@ -134,7 +135,33 @@ public class Main {
                         else order = 2;
                         t.Sort_GPA(students, order);
                         ListGPA(students);
-                        break ;
+                        break;
+                }
+                break;
+            case 4:
+                System.out.println("Input 1 for wild search on Surname");
+                System.out.println("Input 2 for Ranging Query on GPA");
+                switch (input.nextInt()) {
+                    case 1:
+                        //TODO:Finish regex Damn it
+                        break;
+                    case 2:
+                        Student[] res;
+                        System.out.println("Please input your ranging query condition on GPA");
+                        System.out.println("There must a <SPACE> between GPA and Comparison operator");
+                        String operator = input.next();
+                        String GPA = input.next();
+                        if (operator.equals(">")) {
+                            res = t.RangeSearch(students, 1, Double.parseDouble(GPA));
+                        } else {
+                            res = t.RangeSearch(students, 2, Double.parseDouble(GPA));
+                        }
+                        System.out.printf("There are %d students satisfying the condition:\n\n", res.length);
+                        for (Student stu : res) {
+                            System.out.println(stu.FirstName + "  " + stu.Surname + "  " + stu.StudentID);
+                            System.out.printf("GPA: %.2f\n\n", stu.GPA);
+                        }
+                        break;
                 }
                 break;
         }
