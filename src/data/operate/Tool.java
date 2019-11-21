@@ -234,13 +234,12 @@ public class Tool {
     }
 
     public Student[] Match_Surname(String Beginning, Student[] all) {
-        String Format = "^" + Beginning;
+        String Format = "^" + Beginning + ".*";
+        System.out.println(Format);
         int[] pos = new int[all.length + 1];
         int k = 0, count = 0;
-        Pattern p = Pattern.compile(Format);
         for (int i = 0; i < all.length; i++) {
-            Matcher m = p.matcher(all[i].Surname);
-            if (m.matches()) {
+            if (all[i].Surname.matches(Format)) {
                 pos[k] = i + 1;
                 k++;
                 count++;

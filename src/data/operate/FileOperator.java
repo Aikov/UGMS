@@ -61,8 +61,8 @@ public class FileOperator {
                     while (!students[posi].StudentID.equals("")){
                         posi ++;
                     }
-                    students[posi].FirstName = info[0];
-                    students[posi].Surname = info[1];
+                    students[posi].FirstName = info[1];
+                    students[posi].Surname = info[0];
                     students[posi].StudentID = info[2];
                     students[posi].setScore(BasicInfo[0], Integer.parseInt(BasicInfo[1]), Double.parseDouble(info[3]));
                     students[posi].CalculateGPA();
