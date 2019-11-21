@@ -26,7 +26,7 @@ public class Course {
     public double CoursePoints;
     public String CourseGrade;
 
-    //我也许真的该找个人帮我把这个函数写完，So Boring
+    //May be I need to find someone to finish this for me，So Boring
     public void CalculatePointsAndGrade() {
         if (CourseScore < 0 || CourseScore > 100) {
             throw new RuntimeException();

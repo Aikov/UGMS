@@ -143,7 +143,14 @@ public class Main {
                 System.out.println("Input 2 for Ranging Query on GPA");
                 switch (input.nextInt()) {
                     case 1:
-                        //TODO:Finish regex Damn it
+                        System.out.println("Please input the beginning of student`s surname");
+                        System.out.println("Make Sure it be end with '*'");
+                        String Beginning = input.next();
+                        String[] Temp = Beginning.split("\\*");
+                        Beginning = Temp[0];
+                        Student[] Tar = t.Match_Surname(Beginning, students);
+                        System.out.printf("There is %d students found\n", Tar.length);
+                        ListGPA(Tar);
                         break;
                     case 2:
                         Student[] res;
@@ -174,7 +181,7 @@ public class Main {
         System.out.println("Name               ID                       Score      Grade ");
         System.out.println("--------------     ------------------       ------     ------");
         for (Student stu : info) {
-            String name = stu.FirstName + "," + stu.Surname;
+            String name = stu.Surname + "," + stu.FirstName;
             System.out.printf("%-14s    ", name);
             System.out.printf("%19s       ", stu.StudentID);
             System.out.printf("%6s     ", stu.selected.CourseScore);
@@ -217,13 +224,14 @@ public class Main {
         System.out.println("C-: " + Grade[8]);
         System.out.println("D: " + Grade[9]);
         System.out.println("F: " + Grade[10]);
+        System.out.println("O: " + Grade[11]);
     }
 
     private static void ListGPA(Student[] info) {
         System.out.println("Name               ID                       GPA     ");
         System.out.println("--------------     ------------------       ------  ");
         for (Student stu : info) {
-            String name = stu.FirstName + "," + stu.Surname;
+            String name = stu.Surname + "," + stu.FirstName;
             System.out.printf("%-14s    ", name);
             System.out.printf("%19s       ", stu.StudentID);
             System.out.printf("%-6.2f\n", stu.GPA);

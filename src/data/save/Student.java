@@ -24,7 +24,7 @@ public class Student {
     public String StudentID;
     public double GPA;
     public int TotalCredit;
-    public Course selected; //这个用于统计和排序，仅在select和listGrade中使用
+    public Course selected; //For sort and calc only used in LISTGRADE and SELECT
 
     public Student() {
         this.StudentID = "";
@@ -38,9 +38,10 @@ public class Student {
 
     public Course[] course = new Course[100];
 
-    public boolean setCourseBasicInfo(String CourseName, int Credit) {      //这里是个老逻辑
-        for (Course cour : course) {                                        //写着写着发现自己最早架构错了，就扔了，反正也没用过，放着吧
-            if (cour.CourseName.equals(CourseName)) return false;  // Skip init if there is the same
+    public boolean setCourseBasicInfo(String CourseName, int Credit) {      //A old method that never used
+        for (Course cour : course) {                                        //with coding goes on , i realize my primary struct is wrong
+            if (cour.CourseName.equals(CourseName)) return false;           //but i dont want to del it
+            // Skip init if there is the same
         }
         int i;
         for (i = 0; course[i].CourseName != null; i++) continue;
@@ -51,15 +52,15 @@ public class Student {
 
     public void setScore(String CourseName, int CourseCredit, double Score) {
         boolean isExist = true;
-        for (Course cour : course) {                      //这一段逻辑是检查学生课表里有没有这个课程
-            if (CourseName.equals(cour.CourseName)) {     //有的话就直接改分数
+        for (Course cour : course) {                      //to check course exist?
+            if (CourseName.equals(cour.CourseName)) {     //if yes , change the score
                 cour.CourseScore = Score;
                 isExist = true;
                 break;
             } else isExist = false;
         }
-        if (!isExist) {                                  //没有的话就寻找第一个可以使用的空Course创建
-            int posi;                                    //其实如果没有改分数的功能的话这里有点冗余
+        if (!isExist) {                                  //if no build a new Course
+            int posi;                                    //in fact , it will be redundant if no Score change require
             for (posi = 0; !course[posi].CourseName.equals(""); posi++) ;
             course[posi].CourseName = CourseName;
             course[posi].CourseCredit = CourseCredit;
@@ -89,7 +90,7 @@ public class Student {
 
     public String Told() {
         StringBuilder toTold = new StringBuilder("\n\n");
-        toTold.append(this.FirstName).append(" ").append(this.Surname).append(" ").append(this.StudentID).append("\n");
+        toTold.append(this.Surname).append(" ").append(this.FirstName).append(" ").append(this.StudentID).append("\n");
         for (int i = 0; i < course.length && (!course[i].CourseName.equals("")); i++){
             toTold.append(course[i].CourseName).append(" ").append(course[i].CourseGrade).append("\n");
         }

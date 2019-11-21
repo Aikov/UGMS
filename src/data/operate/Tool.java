@@ -21,15 +21,17 @@ import data.Comparator.*;
 import data.save.Student;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Tool {
     public Student[] select_course(Student[] all, String CourseName) {
-        //这个函数的作用是根据课程名称选择学生
+        //Select a Student array with Course name
         int count = 0;
-        int[] pos = new int[all.length + 1];  // +1 防炸
+        int[] pos = new int[all.length + 1];  // +1 to protect it from overflow
         int k = 0;
-        for (int i = 0; (i < all.length) && (!all[i].StudentID.equals("")); i++) {  //这里的equals主要是为了减少时间消耗
-            for (int j = 0; (j < all[i].course.length) && (!all[i].course[j].CourseName.equals("")); j++)  //同上
+        for (int i = 0; (i < all.length) && (!all[i].StudentID.equals("")); i++) {  //equals here is to save time
+            for (int j = 0; (j < all[i].course.length) && (!all[i].course[j].CourseName.equals("")); j++)  //same
                 if (all[i].course[j].CourseName.equals(CourseName)) {
                     count++;
                     all[i].selected = all[i].course[j];
@@ -46,7 +48,7 @@ public class Tool {
     }
 
     public void Sort_Course(Student[] students, int Mode) {
-        //@param Mode:Mode 1 从小到大 ，Mode 2 从大到小 排序依据是students.selected
+        //@param Mode:Mode 1 up ，Mode 2 down According to students.selected
         if (Mode == 1) {
             Arrays.sort(students, new Comparator_course_score_mode1());
         } else if (Mode == 2) {
@@ -54,8 +56,8 @@ public class Tool {
         }
     }
 
-    public Student[] select_student(Student[] all) {         //这个是用来找有用的数据段的
-        int count = 0;                                      //省得后面排序的时候炸掉
+    public Student[] select_student(Student[] all) {         //to get effect data
+        int count = 0;                                      //protect it from fail at Sort
         for (int i = 0; (i < all.length) && (!all[i].StudentID.equals("")); i++)
             count++;
         int k = 0;
@@ -99,7 +101,7 @@ public class Tool {
         }
     }
 
-    public int[] listGrade(Student[] body) {        //这个函数是实现统计某一门课等级数量的
+    public int[] listGrade(Student[] body) {        //to List grade of one course
         int[] Res = new int[12];
         for (Student stu : body) {
             switch (stu.selected.CourseGrade) {
@@ -146,8 +148,8 @@ public class Tool {
 
     public double[] getScore(Student[] body) {
         /*
-         * :param body:所有的数据
-         * :return :一个数组，依次是最大最小和平均值
+         * :param body:All data
+         * :return :a array , max min and aver
          */
         double[] Res = new double[3];
         double max = 0, min = 100;
@@ -163,9 +165,9 @@ public class Tool {
         return Res;
     }
 
-    //没有找到的话返回空
+    //find nothing will return an empty student
     public Student SingleSelect(Student[] body, String ID) {
-        //使用这个函数之前，请一定一定一定要使用select_student，不然可能会炸掉
+        //MUST use select_student FIRST
         for (Student stu : body) {
             if (ID.equals(stu.StudentID)) return stu;
         }
@@ -207,7 +209,7 @@ public class Tool {
 
     public Student[] RangeSearch(Student[] all, int mode, double Limit) {
         //param : mode 1 >  & mode 2 <
-        int[] pos = new int[all.length + 1];     //老样子 +1防炸
+        int[] pos = new int[all.length + 1];     //As below
         int k = 0, count = 0;
         for (int i = 0; i < all.length; i++) {
             if (mode == 1) {
@@ -225,10 +227,30 @@ public class Tool {
             }
         }
         Student[] Tar = new Student[count];
-        for (k = 0; pos[k] != 0; k++){
+        for (k = 0; pos[k] != 0; k++) {
             Tar[k] = all[pos[k] - 1];
         }
-        return Tar ;
+        return Tar;
+    }
+
+    public Student[] Match_Surname(String Beginning, Student[] all) {
+        String Format = "^" + Beginning;
+        int[] pos = new int[all.length + 1];
+        int k = 0, count = 0;
+        Pattern p = Pattern.compile(Format);
+        for (int i = 0; i < all.length; i++) {
+            Matcher m = p.matcher(all[i].Surname);
+            if (m.matches()) {
+                pos[k] = i + 1;
+                k++;
+                count++;
+            }
+        }
+        Student[] Res = new Student[count];
+        for (k = 0; pos[k] != 0; k++) {
+            Res[k] = all[pos[k] - 1];
+        }
+        return Res;
     }
 
 }

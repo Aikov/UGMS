@@ -42,22 +42,22 @@ public class FileOperator {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(PathIn + FileName));
             String FirstLine = reader.readLine();
-            String[] BasicInfo = FirstLine.split(",");    //我为什么总是想着正则不放，WHY？
+            String[] BasicInfo = FirstLine.split(",");    //Why i can forget regex
             int Num = Integer.parseInt(reader.readLine());
-            for (int i = 0; i < Num; i++) {                        //这一段逻辑是我最想骂人的地方
-                boolean isExist = true;                            //最早的NPE就是从这里开始报错的，找了半天不知道怎么办
+            for (int i = 0; i < Num; i++) {                        //here is where i fucked up
+                boolean isExist = true;                            //here throws NPE first, and i dont know how to do
                 String line = reader.readLine();
-                String[] info = line.split(",");            //终于我还是找到了，改了构造器，加了初始化构造
-                for (Student stu : students) {                    //这里就是找找学生里面有没有那个人
-                    if (info[2].equals(stu.StudentID)) {           //有的话就写分数
+                String[] info = line.split(",");            //finally i got it, add init to constructor
+                for (Student stu : students) {                    //find if there a student name this
+                    if (info[2].equals(stu.StudentID)) {           //if there, write score
                         stu.setScore(BasicInfo[0], Integer.parseInt(BasicInfo[1]), Double.parseDouble(info[3]));
                         stu.CalculateGPA();
                         isExist = true;
                         break;
                     } else isExist = false;
                 }
-                if (!isExist) {                                  //没有的话就造一个
-                    int posi = 0;                                    //我开始想念SQL了
+                if (!isExist) {                                  //if no, build new one
+                    int posi = 0;                                    //oh, i start to miss SQL
                     while (!students[posi].StudentID.equals("")){
                         posi ++;
                     }
