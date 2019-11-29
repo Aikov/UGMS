@@ -19,7 +19,7 @@
 package data.save;
 
 public class Student {
-    public String FirstName;
+    public String GivenName;
     public String Surname;
     public String StudentID;
     public double GPA;
@@ -29,7 +29,7 @@ public class Student {
     public Student() {
         this.StudentID = "";
         this.Surname = "";
-        this.FirstName = "";
+        this.GivenName = "";
         selected = new Course();
         for (int i = 0; i < 100; i++) {
             this.course[i] = new Course();
@@ -88,10 +88,11 @@ public class Student {
         this.TotalCredit = Ptotal;
     }
 
-    public String Told() {
+    @Override
+    public String toString() {
         StringBuilder toTold = new StringBuilder("\n\n");
-        toTold.append(this.Surname).append(" ").append(this.FirstName).append(" ").append(this.StudentID).append("\n");
-        for (int i = 0; i < course.length && (!course[i].CourseName.equals("")); i++){
+        toTold.append(this.Surname).append(" ").append(this.GivenName).append(" ").append(this.StudentID).append("\n");
+        for (int i = 0; i < course.length && (!course[i].CourseName.equals("")); i++) {
             toTold.append(course[i].CourseName).append(" ").append(course[i].CourseGrade).append("\n");
         }
         toTold.append("GPA: ").append(this.GPA);

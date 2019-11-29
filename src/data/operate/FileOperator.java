@@ -23,8 +23,6 @@ import java.io.IOException;
 
 public class FileOperator {
     private String PathIn;
-    private String PathOut;
-    private String PathOutput;
     public Student[] students;
 
     public FileOperator(Student[] Info) {
@@ -33,8 +31,6 @@ public class FileOperator {
         //System.out.println(path);
         String[] P = path.split("out");
         this.PathIn = P[0] + "\\FileIn\\";
-        this.PathOut = P[0] + "\\FileOut\\";
-        this.PathOutput = this.PathOut + "\\Student\\";
         this.students = Info;
     }
 
@@ -61,8 +57,8 @@ public class FileOperator {
                     while (!students[posi].StudentID.equals("")){
                         posi ++;
                     }
-                    students[posi].FirstName = info[1];
                     students[posi].Surname = info[0];
+                    students[posi].GivenName = info[1];
                     students[posi].StudentID = info[2];
                     students[posi].setScore(BasicInfo[0], Integer.parseInt(BasicInfo[1]), Double.parseDouble(info[3]));
                     students[posi].CalculateGPA();

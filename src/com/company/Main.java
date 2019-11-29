@@ -99,7 +99,7 @@ public class Main {
                     case 1:
                         System.out.println("Please input ID of the Student:");
                         String ID = input.next();
-                        System.out.println(t.SingleSelect(students, ID).Told());
+                        System.out.println(t.SingleSelect(students, ID).toString());
                         break;
                     case 2:
                         System.out.println("Please input Surname:");
@@ -108,7 +108,7 @@ public class Main {
                         if (select.length == 0) {
                             System.out.println("Sorry no student found");
                             break;
-                        } else for (Student stu : select) System.out.println(stu.Told());
+                        } else for (Student stu : select) System.out.println(stu.toString());
                         break;
                     case 3:
                         System.out.println("Please input the GPA");
@@ -117,7 +117,7 @@ public class Main {
                         if (select.length == 0) {
                             System.out.println("Sorry no student found");
                             break;
-                        } else for (Student stu : select) System.out.println(stu.Told());
+                        } else for (Student stu : select) System.out.println(stu.toString());
                         break;
                 }
                 break;
@@ -165,7 +165,7 @@ public class Main {
                         }
                         System.out.printf("There are %d students satisfying the condition:\n\n", res.length);
                         for (Student stu : res) {
-                            System.out.println(stu.FirstName + "  " + stu.Surname + "  " + stu.StudentID);
+                            System.out.println(stu.GivenName + "  " + stu.Surname + "  " + stu.StudentID);
                             System.out.printf("GPA: %.2f\n\n", stu.GPA);
                         }
                         break;
@@ -181,7 +181,7 @@ public class Main {
         System.out.println("Name               ID                       Score      Grade ");
         System.out.println("--------------     ------------------       ------     ------");
         for (Student stu : info) {
-            String name = stu.Surname + "," + stu.FirstName;
+            String name = stu.Surname + "," + stu.GivenName;
             System.out.printf("%-14s    ", name);
             System.out.printf("%19s       ", stu.StudentID);
             System.out.printf("%6s     ", stu.selected.CourseScore);
@@ -231,7 +231,7 @@ public class Main {
         System.out.println("Name               ID                       GPA     ");
         System.out.println("--------------     ------------------       ------  ");
         for (Student stu : info) {
-            String name = stu.Surname + "," + stu.FirstName;
+            String name = stu.Surname + "," + stu.GivenName;
             System.out.printf("%-14s    ", name);
             System.out.printf("%19s       ", stu.StudentID);
             System.out.printf("%-6.2f\n", stu.GPA);
