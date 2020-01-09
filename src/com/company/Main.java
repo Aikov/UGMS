@@ -63,7 +63,7 @@ public class Main {
                 System.out.println("Would you like to (S)ort, or just (R)aw report");
                 switch (input.next()) {
                     case "R":
-                        print_course(select);
+                        printCourse(select);
                         break;
                     case "S":
                         System.out.println("(1) Surname; (2) ID; (3) Score; (4) Grade");
@@ -84,7 +84,7 @@ public class Main {
                                 t.Sort_Course(select, order);
                                 break;
                         }
-                        print_course(select);
+                        printCourse(select);
                 }
                 System.out.println("Would you like to have brief?");
                 System.out.println("(Y)es or (N)o");
@@ -104,7 +104,7 @@ public class Main {
                     case 2:
                         System.out.println("Please input Surname:");
                         String surname = input.next();
-                        select = t.SurNameSelect(students, surname);
+                        select = t.SurnameSelect(students, surname);
                         if (select.length == 0) {
                             System.out.println("Sorry no student found");
                             break;
@@ -174,7 +174,7 @@ public class Main {
         }
     }
 
-    private static void print_course(Student[] info) {
+    private static void printCourse(Student[] info) {
         System.out.println("Course Code: " + info[0].selected.CourseName);
         System.out.println("Credit: " + info[0].selected.CourseCredit);
         System.out.println("Number of Students: " + info.length);
@@ -200,11 +200,11 @@ public class Main {
         }
     }
 
-    private static void makeStatisticsReport(Student[] select) {
+    private static void makeStatisticsReport(Student[] info) {
         Tool t = new Tool();
-        int[] Grade = t.listGrade(select);
-        double[] Score = t.getScore(select);
-        Course BasicInfo = select[0].selected;
+        int[] Grade = t.listGrade(info);
+        double[] Score = t.getScore(info);
+        Course BasicInfo = info[0].selected;
         System.out.println("Course Code: " + BasicInfo.CourseName);
         System.out.println("Credit: " + BasicInfo.CourseCredit);
         System.out.println();

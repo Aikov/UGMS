@@ -174,7 +174,7 @@ public class Tool {
         return new Student();
     }
 
-    public Student[] SurNameSelect(Student[] body, String Surname) {
+    public Student[] SurnameSelect(Student[] body, String Surname) {
         int count = 0;
         for (int i = 0; (i < body.length) && (!body[i].StudentID.equals("")); i++) {
             if (Surname.equals(body[i].Surname)) count++;
@@ -207,19 +207,19 @@ public class Tool {
     }
 
 
-    public Student[] RangeSearch(Student[] all, int mode, double Limit) {
+    public Student[] RangeSearch(Student[] body, int mode, double Limit) {
         //param : mode 1 >  & mode 2 <
-        int[] pos = new int[all.length + 1];     //As below
+        int[] pos = new int[body.length + 1];     //As below
         int k = 0, count = 0;
-        for (int i = 0; i < all.length; i++) {
+        for (int i = 0; i < body.length; i++) {
             if (mode == 1) {
-                if (all[i].GPA >= Limit) {
+                if (body[i].GPA >= Limit) {
                     pos[k] = i + 1;
                     k++;
                     count++;
                 }
             } else {
-                if (all[i].GPA < Limit) {
+                if (body[i].GPA < Limit) {
                     pos[k] = i + 1;
                     k++;
                     count++;
@@ -228,17 +228,17 @@ public class Tool {
         }
         Student[] Tar = new Student[count];
         for (k = 0; pos[k] != 0; k++) {
-            Tar[k] = all[pos[k] - 1];
+            Tar[k] = body[pos[k] - 1];
         }
         return Tar;
     }
 
-    public Student[] Match_Surname(String Beginning, Student[] all) {
+    public Student[] Match_Surname(String Beginning, Student[] body) {
         String Format = "^" + Beginning + "(.*)";
-        int[] pos = new int[all.length + 1];
+        int[] pos = new int[body.length + 1];
         int k = 0, count = 0;
-        for (int i = 0; i < all.length; i++) {
-            if (all[i].Surname.matches(Format)) {
+        for (int i = 0; i < body.length; i++) {
+            if (body[i].Surname.matches(Format)) {
                 pos[k] = i + 1;
                 k++;
                 count++;
@@ -246,7 +246,7 @@ public class Tool {
         }
         Student[] Res = new Student[count];
         for (k = 0; pos[k] != 0; k++) {
-            Res[k] = all[pos[k] - 1];
+            Res[k] = body[pos[k] - 1];
         }
         return Res;
     }
